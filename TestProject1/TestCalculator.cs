@@ -1,7 +1,8 @@
+using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
+using OpenQA.Selenium.Interactions;
 using OpenQA.Selenium.Support.UI;
-using NUnit.Framework;
 using System;
 
 namespace TestProject1
@@ -9,6 +10,7 @@ namespace TestProject1
     [TestFixture]
     public class TestCalculator
     {
+        ChromeOptions options;
         IWebDriver driver;
         IWebElement textBoxFirstNum;
         IWebElement textBoxSecondNum;
@@ -20,7 +22,11 @@ namespace TestProject1
         [OneTimeSetUp]
         public void SetUp()
         {
-            driver = new ChromeDriver();
+            // Create object of ChromeDriver with options(headless)
+            options = new ChromeOptions();
+            options.AddArgument("--headless");
+            driver = new ChromeDriver(options);
+
             driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10);
             driver.Url = "https://calculatorhtml.onrender.com/";
 

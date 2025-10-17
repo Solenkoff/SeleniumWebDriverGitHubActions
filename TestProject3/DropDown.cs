@@ -10,18 +10,16 @@ namespace TestProject3
     [TestFixture]
     public class WorkingWithDropDown
     {
+        ChromeOptions options;
         IWebDriver driver;
-        private ChromeOptions options;
 
         [SetUp]
         public void SetUp()
         {
-            //options = new ChromeOptions();
-            //options.AddArgument("--headless");
-            //driver = new ChromeDriver(options);
-
-            // Create object of ChromeDriver
-            driver = new ChromeDriver();
+            // Create object of ChromeDriver with options(headless)
+            options = new ChromeOptions();
+            options.AddArgument("--headless");
+            driver = new ChromeDriver(options);
 
             // Add implicit wait
             driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10);

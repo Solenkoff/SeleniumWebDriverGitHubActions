@@ -8,13 +8,16 @@ namespace TestProject2
     [TestFixture]
     public class WorkingWithWebTable
     {
+        ChromeOptions options;
         IWebDriver driver;
 
         [SetUp]
         public void SetUp()
         {
-            // Create object of ChromeDriver
-            driver = new ChromeDriver();
+            // Create object of ChromeDriver with options(headless)
+            options = new ChromeOptions();
+            options.AddArgument("--headless");
+            driver = new ChromeDriver(options);
 
             // Add implicit wait
             driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10);
