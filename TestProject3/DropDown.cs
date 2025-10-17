@@ -11,16 +11,30 @@ namespace TestProject3
     public class WorkingWithDropDown
     {
         IWebDriver driver;
+        private ChromeOptions options;
 
         [SetUp]
         public void SetUp()
         {
+            //options = new ChromeOptions();
+            //options.AddArgument("--headless");
+            //driver = new ChromeDriver(options);
+
             // Create object of ChromeDriver
             driver = new ChromeDriver();
 
             // Add implicit wait
             driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10);
         }
+
+        [TearDown]
+        public void TearDown()
+        {
+            // Quit the driver
+            driver.Quit();
+            driver.Dispose();
+        }
+
 
         [Test]
         public void TestSelectFromDropDown()
@@ -81,9 +95,6 @@ namespace TestProject3
                     }
                 }
             }
-
-            // Quit the driver
-            driver.Quit();
         }
     }
 }
